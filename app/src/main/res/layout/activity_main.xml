@@ -93,7 +93,7 @@
             android:layout_width="48sp"
             android:layout_height="24sp"
             android:paddingRight="24sp"
-            app:srcCompat="@drawable/icon_close_eye" />
+            app:srcCompat="@drawable/icon_open_eye" />
     </LinearLayout>
 
 
@@ -112,7 +112,7 @@
         android:layout_width="327sp"
         android:layout_height="56sp"
         android:layout_marginLeft="34sp"
-        android:layout_marginTop="497sp"
+        android:layout_marginTop="477sp"
         android:background="@drawable/btn_borders"
         android:text="Login"
         android:textAllCaps="false"
@@ -124,7 +124,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="144sp"
-        android:layout_marginTop="577sp"
+        android:layout_marginTop="552sp"
         android:text="Or continue with"
         android:textColor="#9FA5C0"
         android:textSize="15sp" />
@@ -133,7 +133,7 @@
         android:layout_width="327dp"
         android:layout_height="62dp"
         android:layout_marginLeft="34dp"
-        android:layout_marginTop="626dp"
+        android:layout_marginTop="601dp"
         android:background="@drawable/btn2_borders"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -165,7 +165,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="70sp"
-        android:layout_marginTop="712sp"
+        android:layout_marginTop="682sp"
         android:text="Don’t have any account?"
         android:textColor="#2E3E5C"
         android:textSize="15sp" />
@@ -175,7 +175,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="255sp"
-        android:layout_marginTop="712sp"
+        android:layout_marginTop="682sp"
         android:text="Sign Up"
         android:textColor="#1FCC79"
         android:textSize="15sp"

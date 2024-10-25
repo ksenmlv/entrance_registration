@@ -17,6 +17,25 @@ class MainActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Проверка на наличие сохраненных данных
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val savedEmailOrPhone = sharedPreferences.getString("email_or_phone", null)
+        val savedPassword = sharedPreferences.getString("password", null)
+
+        if (savedEmailOrPhone != null && savedPassword != null) {
+            // Проверка существования пользователя с сохраненными данными
+            val user = isUserExists(savedEmailOrPhone, savedPassword)
+            if (user != null) {
+                // Перенаправление на WelcomeActivity
+                val intent = Intent(this, WelcomeActivity::class.java)
+                intent.putExtra("key", user.name)
+                startActivity(intent)
+                finish() // Закрыть MainActivity
+                return // Прекратить выполнение onCreate
+            }
+        }
+
         setContentView(R.layout.activity_main)   //R - способ обращаться из кода к ресурсам приложения
 
         imageView4 = findViewById(R.id.imageView4)
@@ -29,13 +48,16 @@ class MainActivity: AppCompatActivity() {
 
             if (isPasswordVisible) {
                 inputPassword.inputType = android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                imageView4.setImageResource(R.drawable.icon_open_eye)
+                imageView4.setImageResource(R.drawable.icon_close_eye)
                 inputPassword.setSelection(inputPassword.text?.length ?: 0)   //устанавливаем курсор в конец текста
             } else {
+                imageView4.setImageResource(R.drawable.icon_open_eye)
                 inputPassword.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
                 inputPassword.setSelection(inputPassword.text?.length ?: 0)
             }
         }
+
+
 
         //обработчик клика на кнопку login
         val loginButton: Button = findViewById(R.id.button)
@@ -48,13 +70,22 @@ class MainActivity: AppCompatActivity() {
 
             val user = isUserExists(EmailOrPhone, password)
             if (user != null) {
+                //сохранение данных юзера в SharedPreferences
+                val editor = sharedPreferences.edit()
+                editor.putString("email_or_phone", EmailOrPhone)
+                editor.putString("password", password)
+                editor.apply()
+
                 intent.putExtra("key", user.name)
                 startActivity(intent)
+                finish()  //закрытие MainActivity
             } else {
                 Log.w("Login", "Не удалось войти: неверный логин или пароль")
                 //сообщение об ошибке
                 Snackbar.make(findViewById(android.R.id.content), "User not exists", Snackbar.LENGTH_LONG).show()
             }
+
+
         }
     }
 
